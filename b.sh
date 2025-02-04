@@ -10,4 +10,4 @@ git commit -m "backup"
 git push origin master
 
 # Tampilkan pesan backup selesai dengan warna hijau
-echo -e "\e[32mBackup selesai!\e[0m"
+echo "Backup selesai!"
