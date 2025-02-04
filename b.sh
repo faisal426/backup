@@ -7,7 +7,7 @@ git add .
 git commit -m "backup"
 
 # Push ke branch master
-git push --force  origin master
+git push origin master
 
 # Tampilkan pesan backup selesai dengan warna hijau
 echo -e "\e[32mBackup selesai!\e[0m"
