@@ -1,0 +1,105 @@
+<html>
+  <body>
+    <h3>Daftar Pengguna Baru</h3>
+    
+    <!-- Form untuk daftar pengguna -->
+    <label for="newUsername">Username: </label>
+    <input type="text" id="newUsername" />
+    <br />
+    <label for="newEmail">Email: </label>
+    <input type="email" id="newEmail" />
+    <br />
+    <button onclick="registerUser()">Daftar</button>
+
+    <hr />
+
+    <h3>Validasi Pengguna</h3>
+    
+    <!-- Form untuk validasi pengguna -->
+    <label for="username">Username: </label>
+    <input type="text" id="username" />
+    <br />
+    <label for="email">Email: </label>
+    <input type="email" id="email" />
+    <br />
+    <button onclick="validateUser()">Validate</button>
+    <p id="result"></p> <!-- Tempat untuk menampilkan hasil validasi -->
+
+    <script>
+      let usersData = []; // Tempat untuk menyimpan data pengguna
+
+      async function api() {
+        try {
+          // Ambil data dari server
+          const request = await fetch("https://jsonplaceholder.typicode.com/users");
+
+          // Pastikan server merespon dengan benar
+          if (!request.ok) {
+            throw new Error('Network response was not ok');
+          }
+
+          // Ubah kiriman server menjadi JSON
+          usersData = await request.json();
+
+          // Tampilkan data yang diterima di console (opsional)
+          console.log("Data pengguna dari API:", usersData);
+        } catch (error) {
+          console.error('There was an error!', error);
+        }
+      }
+
+      // Panggil fungsi api untuk mendapatkan data
+      api();
+
+      // Fungsi untuk mendaftar pengguna
+      function registerUser() {
+        const newUsername = document.getElementById('newUsername').value;
+        const newEmail = document.getElementById('newEmail').value;
+        
+        // Validasi input
+        if (!newUsername || !newEmail) {
+          alert('Username dan email harus diisi!');
+          return;
+        }
+
+        // Cek apakah username atau email sudah ada
+        const userExists = usersData.some(user => user.username === newUsername || user.email === newEmail);
+
+        if (userExists) {
+          alert('Username atau email sudah terdaftar!');
+        } else {
+          // Tambahkan pengguna baru ke dalam data
+          usersData.push({
+            username: newUsername,
+            email: newEmail
+          });
+          alert('Pengguna berhasil didaftarkan!');
+          
+          // Tampilkan database dalam format "disini nama \n disini email"
+          
+          usersData.forEach(user => {
+            console.log(`${user.username} \n ${user.email}`);
+          });
+        }
+      }
+
+      // Fungsi untuk validasi input
+      function validateUser() {
+        const usernameInput = document.getElementById('username').value;
+        const emailInput = document.getElementById('email').value;
+        const result = document.getElementById('result');
+
+        // Cek apakah ada pengguna dengan username dan email yang cocok
+        const user = usersData.find(user => user.username === usernameInput && user.email === emailInput);
+
+        if (user) {
+          result.textContent = `Valid! Welcome, ${user.username}.`;
+          result.style.color = 'green';
+        } else {
+          result.textContent = 'Invalid username or email.';
+          result.style.color = 'red';
+        }
+      }
+    </script>
+  </body>
+</html>
