@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Saya</title>
+    <style>
+      * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    
+}
+a{
+  -webkit-tap-highlight-color: transparent;
+}
+    
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: white;
+            background: #1a1a1a;
+            overflow-x: hidden;
+        }
+        header {
+            background: linear-gradient(135deg, #3498db, #8e44ad);
+            padding: 60px 20px;
+            text-align: center;
+            font-size: 28px;
+            font-weight: bold;
+            position: relative;
+            z-inde: 1;
+        }
+        #atasanputih{
+          height: 100%;
+          width: 50%;
+          background-color: white;
+        }
+        .navbar {
+            position: sticky;
+            top: 0;
+            width: 100%;
+            background:#344CB8;
+            padding: 10px 0;
+            text-align: center;
+            z-index: 2;
+        }
+        .navbar a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+            font-size: 18px;
+            transition: 0.3s;
+        }
+        .navbar a:hover {
+            color: #3498db;
+        }
+        section {
+            padding: 100px 20px;
+            min-height: 100vh;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            text-align: center;
+        }
+        .show {
+            opacity: 1;
+        }
+        #about, #skills, #projects, #contact {
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        #about { background: #2c3e50; }
+        #skills { background: #16a085; }
+        #projects { background: #f39c12; }
+        #contact { background: #c0392b; }
+        h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        p, li {
+            font-size: 18px;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            margin: 10px 0;
+        }
+        .icon {
+            width: 50px;
+            height: 50px;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+        form {
+            max-width: 400px;
+            margin: auto;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+        }
+        input, textarea, button {
+            width: 100%;
+            margin: 10px 0;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            outline: none;
+        }
+        input, textarea {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+        button {
+            background: linear-gradient(135deg, #3498db, #8e44ad);
+            color: white;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        button:hover {
+            transform: scale(1.1);
+        }
+        #successMessage {
+            display: none;
+            background: #27ae60;
+            padding: 10px;
+            border-radius: 5px;
+            color: white;
+            margin-top: 10px;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+<div id="atasanputih"></div>
+    <div class="navbar">
+        <a href="#about">Tentang</a>
+        <a href="#skills">Keterampilan</a>
+        <a href="#projects">Proyek</a>
+        <a href="#contact">Kontak</a>
+    </div>
+
+    <header>
+        <span id="typing"></span>
+    </header>
+
+    <section id="about">
+        <h2>Tentang Saya</h2>
+        <p>Saya adalah seorang web developer dengan pengalaman dalam teknologi terbaru.</p>
+    </section>
+
+    <section id="skills">
+        <h2>Keterampilan</h2>
+        <ul>
+            <li><img src="https://cdn-icons-png.flaticon.com/512/732/732212.png" class="icon"> HTML, CSS, JavaScript</li>
+            <li><img src="https://cdn-icons-png.flaticon.com/512/919/919851.png" class="icon"> jQuery & React</li>
+            <li><img src="https://cdn-icons-png.flaticon.com/512/919/919825.png" class="icon"> Backend dengan Node.js & PHP</li>
+            <li><img src="https://cdn-icons-png.flaticon.com/512/3342/3342137.png" class="icon"> UI/UX Design</li>
+        </ul>
+    </section>
+
+    <section id="projects">
+        <h2>Proyek Saya</h2>
+        <ul>
+            <li><img src="https://cdn-icons-png.flaticon.com/512/1828/1828884.png" class="icon"> Website E-Commerce</li>
+            <li><img src="https://cdn-icons-png.flaticon.com/512/1041/1041916.png" class="icon"> Aplikasi Mobile</li>
+            <li><img src="https://cdn-icons-png.flaticon.com/512/2910/2910825.png" class="icon"> SEO Optimization</li>
+        </ul>
+    </section>
+
+    <section id="contact">
+        <h2>Hubungi Saya</h2>
+        <form id="contactForm">
+            <input type="text" id="name" placeholder="Nama Anda" required>
+            <input type="email" id="email" placeholder="Email Anda" required>
+            <textarea id="message" placeholder="Pesan Anda" required></textarea>
+            <button type="submit">Kirim</button>
+        </form>
+        <div id="successMessage">✅ Pesan berhasil dikirim!</div>
+    </section>
+
+    <script>
+        $(document).ready(function() {
+            $(".navbar a").click(function(event) {
+                event.preventDefault();
+                var target = $(this).attr("href");
+                $("html, body").animate({ scrollTop: $(target).offset().top }, 800);
+            });
+
+            $(window).on("scroll", function() {
+                $("section").each(function() {
+                    var position = $(this).offset().top;
+                    var scroll = $(window).scrollTop();
+                    var windowHeight = $(window).height();
+                    if (scroll > position - windowHeight + 100) {
+                        $(this).addClass("show");
+                    }
+                });
+            });
+
+            var text = "Halo! Saya Web Developer 🚀";
+            var index = 0;
+            function typeEffect() {
+                if (index < text.length) {
+                    $("#typing").append(text[index]);
+                    index++;
+                    setTimeout(typeEffect, 100);
+                }
+            }
+            typeEffect();
+
+            $("#contactForm").submit(function(event) {
+                event.preventDefault();
+                $("#successMessage").fadeIn().delay(3000).fadeOut();
+                $(this).trigger("reset");
+            });
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD SQLite + Flask</title>
+</head>
+<body>
+    <h2>Daftar User</h2>
+    <ul id="userList"></ul>
+
+    <h3>Tambah User</h3>
+    <input type="text" id="nama" placeholder="Nama">
+    <input type="number" id="usia" placeholder="Usia">
+    <button onclick="addUser()">Tambah</button>
+
+    <script>
+        const API_URL = "http://127.0.0.1:5000/users";
+
+        function loadUsers() {
+            fetch(API_URL)
+                .then(res => res.json())
+                .then(data => {
+                    let list = document.getElementById("userList");
+                    list.innerHTML = "";
+                    data.forEach(user => {
+                        list.innerHTML += `<li>${user[1]} (${user[2]}) 
+                            <button onclick="deleteUser(${user[0]})">Hapus</button>
+                        </li>`;
+                    });
+                });
+        }
+
+        function addUser() {
+            let nama = document.getElementById("nama").value;
+            let usia = document.getElementById("usia").value;
+
+            fetch(API_URL, {
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify({nama: nama, usia: usia})
+            }).then(() => loadUsers());
+        }
+
+        function deleteUser(id) {
+            fetch(`${API_URL}/${id}`, { method: "DELETE" })
+                .then(() => loadUsers());
+        }
+
+        loadUsers();
+    </script>
+</body>
+</html>
