@@ -2,8 +2,7 @@
 
 int main() {
     char nama[50];
-    float panjang, lebar;
-    int pilihan;
+    int panjang, lebar, pilihan;
 
     printf("SELAMAT DATANG DI KALKULATOR PERSEGI PANJANG\n\n");
     
@@ -11,10 +10,10 @@ int main() {
     scanf("%s", nama);
 
     printf("Masukkan nilai panjang: ");
-    scanf("%f", &panjang);
+    scanf("%d", &panjang);
 
     printf("Masukkan nilai lebar: ");
-    scanf("%f", &lebar);
+    scanf("%d", &lebar);
 
     printf("\nNilai apa yang mau kamu cari?\n");
     printf("Ketik 1: Luas persegi panjang\n");
@@ -26,9 +25,9 @@ int main() {
     printf("\nHai %s\n", nama);
 
     if (pilihan == 1) {
-        printf("Luas persegi panjang adalah: %.2f\n", panjang * lebar);
+        printf("Luas persegi panjang adalah: %d\n", panjang * lebar);
     } else if (pilihan == 2) {
-        printf("Keliling persegi panjang adalah: %.2f\n", 2 * (panjang + lebar));
+        printf("Keliling persegi panjang adalah: %d\n", 2 * (panjang + lebar));
     } else {
         printf("Pilihan tidak valid!\n");
     }
