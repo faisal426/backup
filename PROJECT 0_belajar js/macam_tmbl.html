@@ -1,0 +1,41 @@
+<html>
+  
+  <head>
+    
+  </head>
+  <body>
+    
+    <ul class="tampung">halo</ul>
+    <button onclick="li()" class="tombol">klik</button>
+    
+    <button class="tombol2">klik2</button>
+    
+    <button class="copas_btn">copy</button>
+    <p class="text_p">belajar javascript itu mudah</p>
+  </body>
+  <script>
+  
+  document.querySelector('.copas_btn').addEventListener('click',
+  function(){
+    let p= document.querySelector('.text_p').innerText
+navigator.clipboard.writeText(p).then(function(){alert('berhasil')}).catch(function(){alert('gagal')})
+  }
+  )
+  
+  
+  
+  function li(){
+    
+    let tmbh= document.createElement('li')
+  
+    tmbh.textContent='faisal';
+    let ul= document.querySelector('.tampung').appendChild(tmbh)}
+  
+  let t_2=document.querySelector('.tombol2').addEventListener('click',
+  function oke(){
+    alert('hai')
+    
+  })
+  
+  </script>
+</html>

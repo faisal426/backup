@@ -1,0 +1,29 @@
+<html>
+  <head>
+    
+  </head>
+  <style>
+    .wadah_tbl{
+      margin: 40%;
+    }
+    
+  </style>
+  <body>
+    <h1 class="text">oke</h1>
+    
+    <div class="wadah_tbl">
+    <button class="tombol" onclick="tbl()">tekan ini</button>
+    </div>
+  </body>
+  <script>
+    let w_text = document.querySelector('.text')
+    let t_js= document.querySelector('.tombol')
+    
+    t_js.addEventListener('click',
+    function(){
+      w_text.innerText = "sudah berubah";
+    }
+    );
+    
+  </script>
+</html>
